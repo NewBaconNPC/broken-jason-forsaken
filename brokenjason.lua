@@ -356,7 +356,7 @@ end
 				--main
 
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "The Files are loaded!" -- Required
+	Title = "The Files are loaded!", -- Required
 	Text = "The files have been Loaded", -- Required
 	Icon = "http://www.roblox.com/asset/?id=16726350140" -- Optional
 })
@@ -370,7 +370,7 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 							print("PLAYER IS JASON!")
 
 game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Jason Skin Changed" -- Required
+	Title = "Jason Skin Changed", -- Required
 	Text = "The skin of the jason has been changed to broken", -- Required
 	Icon = "http://www.roblox.com/asset/?id=16726350140" -- Optional
 })
@@ -572,7 +572,7 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 							
 							else
 							game:GetService("StarterGui"):SetCore("SendNotification",{
-	Title = "Jason Skin Not Changed" -- Required
+	Title = "Jason Skin Not Changed", -- Required
 	Text = "You dindt equip the normal jason...", -- Required
 	Icon = "http://www.roblox.com/asset/?id=16726350140" -- Optional
 })
