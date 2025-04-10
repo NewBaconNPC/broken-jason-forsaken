@@ -47,6 +47,38 @@ else
 	end
 end
 
+--wound 
+
+if _G.DONOTEXECUTE and _G.DONOTEXECUTE == true then
+else
+	if isfolder and makefolder and writefile and isfile and request and getcustomasset then
+		if not isfolder("brokenforsakenskin") then
+			makefolder("brokenforsakenskin")
+		end
+
+		if not isfile("brokenforsakenskin/intro.mp3") then
+
+			_G.DONOTEXECUTE = true
+			local soundData = request({
+				Method="GET",
+				Url="https://github.com/NewBaconNPC/broken-jason-forsaken/raw/refs/heads/main/intro_broken.ogg"
+			}).Body
+			_G.DONOTEXECUTE = nil
+
+			if soundData then 
+				writefile("brokenforsakenskin/intro.mp3", soundData)
+			else
+
+
+				return
+			end
+		end
+	else
+
+		return
+	end
+end
+
 
 	--m1 finisher
 	if _G.DONOTEXECUTE and _G.DONOTEXECUTE == true then
@@ -382,6 +414,8 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 								end
 							end
 
+                            v.Head.RagingPaceAttachment:Destroy()
+
 							local dummy = game:GetService("Players").LocalPlayer.Character
 							local attach1 = Instance.new("Attachment",dummy.HumanoidRootPart)
 							attach1.CFrame = CFrame.new(0, 5, 0)
@@ -393,7 +427,7 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 							beam.Attachment0 = attach1
 							beam.Attachment1 = attach0
 
-							beam.LightInfluence = 1
+							beam.LightInfluence = 0.6
 							beam.TextureSpeed = 0
 							beam.Texture = getcustomasset("brokenforsakenskin/broken.png", false)
 							beam.TextureMode = Enum.TextureMode.Stretch
@@ -474,6 +508,8 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 							local character = player.Character
 
 							local humanoid = character:WaitForChild("Humanoid")
+
+
 
 							local animationId = 101736016625776
 
@@ -560,6 +596,25 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 
 									local child = Instance.new("Sound",v.HumanoidRootPart)
 									child.SoundId = getcustomasset("brokenforsakenskin/rage.mp3")
+									child.Volume = 1.5
+									child:Play()
+									child.Stopped:Wait()
+									child:Destroy()
+								end
+
+							end
+
+							v.Humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+							local animationId = 73797519945529
+
+							local function onAnimationPlayed(animationTrack)
+
+								if animationTrack.Animation.AnimationId == "rbxassetid://"..animationId then
+
+
+									local child = Instance.new("Sound",v.HumanoidRootPart)
+									child.SoundId = getcustomasset("brokenforsakenskin/intro.mp3")
 									child.Volume = 1.5
 									child:Play()
 									child.Stopped:Wait()
